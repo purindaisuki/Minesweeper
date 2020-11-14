@@ -15,4 +15,6 @@ Every move is deducible which is guaranteed by a solver implemented with single 
   
 * Click the smiley face to restart the game
 
+* Choose the difficulty at the menu bar
+
 * That's it. Enjoy it without annoying guessing
