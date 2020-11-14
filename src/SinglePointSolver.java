@@ -25,7 +25,7 @@ public class SinglePointSolver {
         int mineNumber = mineBoard.getMineNumber();
         boolean mapUpdated = false;
         int totalFlagCouunt = 0;
-        int totalProbedSqauresCount = 0;
+        int totalProbedSqauresCount = 1; // include the first clicked one
 
         HashSet<Integer> frontierSquares = new HashSet<Integer>(2 * (gridRow + gridColumn));
         // set of squares which can provide information to probe other squares

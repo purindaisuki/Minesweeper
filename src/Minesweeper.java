@@ -230,7 +230,6 @@ public class Minesweeper {
     private void gameOver(Boolean win) {
         timer.stop();
         if (win) {
-            //JOptionPane.showInputDialog(frame, "You win!");
             restartButton.setIcon(winIcon);
             restMineNumberLabel.setText("0");
         }

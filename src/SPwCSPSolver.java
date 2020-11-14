@@ -131,7 +131,7 @@ public class SPwCSPSolver {
         int mineNumber = mineBoard.getMineNumber();
         boolean mapUpdated = false;
         int totalFlagCouunt = 0;
-        int totalProbedSqauresCount = 0;
+        int totalProbedSqauresCount = 1; // include the first clicked one
 
         HashSet<Integer> frontierSquares = new HashSet<Integer>(2 * (gridRow + gridColumn));
         // set of squares which can provide information to probe other squares
@@ -227,15 +227,17 @@ public class SPwCSPSolver {
                         int row = (int) (squareIndex / gridColumn);
                         int col = squareIndex % gridColumn;
                         SquareButton square = mineBoard.getSquare(row, col);
-                        frontierSquares.add(squareIndex);
-                        square.setEnabled(false);
-                        if (mines == 0) {
-                            // if AFN
-                            totalProbedSqauresCount++;
-                        } else {
-                            // if AMN
-                            square.setFlagged(true);
-                            totalFlagCouunt++;
+                        if (square.isEnabled()){
+                            square.setEnabled(false);
+                            if (mines == 0) {
+                                // if AFN
+                                frontierSquares.add(squareIndex);
+                                totalProbedSqauresCount++;
+                            } else {
+                                // if AMN
+                                square.setFlagged(true);
+                                totalFlagCouunt++;
+                            }
                         }
                     }
                     mapUpdated = true;
