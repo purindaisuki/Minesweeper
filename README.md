@@ -1,5 +1,5 @@
 # Minesweeper
-A minesweeper game requiring no guessing with GUI
+A minesweeper game requiring no guessing with GUI written in java
 
 Every move is deducible which is guaranteed by a solver implemented with single point and CSP strategies.
 
