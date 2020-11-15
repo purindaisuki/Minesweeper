@@ -17,4 +17,8 @@ Every move is deducible which is guaranteed by a solver implemented with single 
 
 * Choose the difficulty at the menu bar
 
+<<<<<<< HEAD
 * That's it. Enjoy it without annoying guessing
+=======
+* That's it. Enjoy it without annoying guessing
+>>>>>>> origin/main
