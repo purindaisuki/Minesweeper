@@ -155,36 +155,6 @@ public class MineBoard {
                     SquareButton square = getSquare(row, col);
                     square.setEnabled(true);
                     square.setFlagged(false);
-                    byte mineCount = countNeighor(square, COUNT_NEIGHBOR_MINE);
-                    switch (mineCount) {
-                        case(0) :
-                            square.setDisabledIcon(zeroIcon);
-                            break;
-                        case(1) : 
-                            square.setDisabledIcon(oneIcon);
-                            break;
-                        case(2) : 
-                            square.setDisabledIcon(twoIcon);
-                            break;
-                        case(3) : 
-                            square.setDisabledIcon(threeIcon);
-                            break;
-                        case(4) : 
-                            square.setDisabledIcon(fourIcon);
-                            break;
-                        case(5) : 
-                            square.setDisabledIcon(fiveIcon);
-                            break;
-                        case(6) : 
-                            square.setDisabledIcon(sixIcon);
-                            break;
-                        case(7) : 
-                            square.setDisabledIcon(sevenIcon);
-                            break;
-                        case(8) : 
-                            square.setDisabledIcon(eightIcon);
-                            break;
-                    }
                 }
             }
         }
@@ -273,6 +243,35 @@ public class MineBoard {
             square.setDisabledIcon(mineIcon);
         } else {
             byte mineCount = countNeighor(square, COUNT_NEIGHBOR_MINE);
+            switch (mineCount) {
+                case(0) :
+                    square.setDisabledIcon(zeroIcon);
+                    break;
+                case(1) : 
+                    square.setDisabledIcon(oneIcon);
+                    break;
+                case(2) : 
+                    square.setDisabledIcon(twoIcon);
+                    break;
+                case(3) : 
+                    square.setDisabledIcon(threeIcon);
+                    break;
+                case(4) : 
+                    square.setDisabledIcon(fourIcon);
+                    break;
+                case(5) : 
+                    square.setDisabledIcon(fiveIcon);
+                    break;
+                case(6) : 
+                    square.setDisabledIcon(sixIcon);
+                    break;
+                case(7) : 
+                    square.setDisabledIcon(sevenIcon);
+                    break;
+                case(8) : 
+                    square.setDisabledIcon(eightIcon);
+                    break;
+            }
             if (probedSquareNumber + mineNumber == gridRow * gridColumn) {
                 boardClear = true;
             } else if (mineCount == 0) {
