@@ -114,7 +114,7 @@ public class MineBoard {
 
     /**
      * Generate map requiring no guessing
-     * @param square first clicked square
+     * @param clickedSquare first clicked square
      */
     public void generateSolvableMap(SquareButton clickedSquare) {
         int randRow, randCol;
@@ -125,20 +125,17 @@ public class MineBoard {
             placedMineNum = 0;
             // initialize the map except for first clicked button
             initialize();
-            probedSquareNumber = 1;
             clickedSquare.setSelected(true);
             clickedSquare.setEnabled(false);
-            clickedSquare.setDisabledIcon(zeroIcon);
             // randomly place mines
             while (placedMineNum < mineNumber) {
                 randRow = (int) (Math.random() * gridRow);
                 randCol = (int) (Math.random() * gridColumn);
-                SquareButton randSquare = getSquare(randRow, randCol);
                 if (!(randRow >= position[0] - 1 && randRow <= position[0] + 1
                       && randCol >= position[1] - 1 && randCol <= position[1] + 1)
-                    && !randSquare.isMine()) {
+                    && !squares[randRow][randCol].isMine()) {
                     //make sure not to place mines around or at the clicked square which causes guessing
-                    randSquare.setMine(true);
+                    squares[randRow][randCol].setMine(true);
                     placedMineNum++;
                 }
             }
@@ -152,9 +149,8 @@ public class MineBoard {
         for (int row = 0; row < gridRow; row++) {
             for (int col = 0; col < gridColumn; col++) {
                 if (!(row == position[0] && col == position[1])) {
-                    SquareButton square = getSquare(row, col);
-                    square.setEnabled(true);
-                    square.setFlagged(false);
+                    squares[row][col].setEnabled(true);
+                    squares[row][col].setFlagged(false);
                 }
             }
         }
@@ -174,13 +170,12 @@ public class MineBoard {
     public void freezeBoard() {
         for (int row = 0; row < gridRow; row++) {
             for (int col = 0; col < gridColumn; col++) {
-                SquareButton square = getSquare(row, col);
-                square.setEnabled(false);
-                square.setSelected(true);
-                if (square.isMine()){
+                squares[row][col].setEnabled(false);
+                squares[row][col].setSelected(true);
+                if (squares[row][col].isMine()){
                     // display mine as flag icon when user wins, otherwise mine icon
-                    if (boardClear) square.setDisabledIcon(flagIcon);
-                    else square.setDisabledIcon(mineIcon);
+                    if (boardClear) squares[row][col].setDisabledIcon(flagIcon);
+                    else squares[row][col].setDisabledIcon(mineIcon);
                 }
             }
         }

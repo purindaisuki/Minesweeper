@@ -152,9 +152,10 @@ public class Minesweeper {
                                 if (!firstClicked) {
                                     firstClicked = true;
                                     timer.start();
-                                }
-                                if (mineBoard.isClear() || mineBoard.isFailed()) {
-                                    gameOver(mineBoard.isClear());
+                                } else {
+                                    if (mineBoard.isClear() || mineBoard.isFailed()) {
+                                        gameOver(mineBoard.isClear());
+                                    }
                                 }
                             }
                         }
@@ -164,13 +165,12 @@ public class Minesweeper {
                                 if (square.isFlagged()) {
                                     mineBoard.unflag(square);
                                     restMineNumber++;
-                                    restMineNumberLabel.setText(Integer.toString(restMineNumber));
                                 }
                                 else {
                                     mineBoard.flag(square);
                                     restMineNumber--;
-                                    restMineNumberLabel.setText(Integer.toString(restMineNumber));
                                 }
+                                restMineNumberLabel.setText(Integer.toString(restMineNumber));
                             }
                         }
                     }
