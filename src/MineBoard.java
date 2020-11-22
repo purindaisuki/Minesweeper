@@ -125,6 +125,7 @@ public class MineBoard {
             placedMineNum = 0;
             // initialize the map except for first clicked button
             initialize();
+            probedSquareNumber = 1;
             clickedSquare.setSelected(true);
             clickedSquare.setEnabled(false);
             // randomly place mines
