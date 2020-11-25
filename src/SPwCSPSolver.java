@@ -7,8 +7,6 @@ import java.util.*;
  */
 public class SPwCSPSolver {
 
-    private int gridRow, gridColumn;
-
     private SPwCSPSolver() {}
 
     public static SPwCSPSolver getSolver() {
@@ -127,18 +125,18 @@ public class SPwCSPSolver {
      * @return whether the board is solvable
      */
     public boolean isSolvable(MineBoard mineBoard, int clickedSquareIndex) {
-        gridRow = mineBoard.getRow();
-        gridColumn = mineBoard.getColumn();
+        int gridRow = mineBoard.getRow();
+        int gridColumn = mineBoard.getColumn();
         int mineNumber = mineBoard.getMineNumber();
         boolean mapUpdated = false;
-        int totalFlagCouunt = 0;
+        int totalFlagCount = 0;
         int totalProbedSqauresCount = 1; // include the first clicked one
 
         HashSet<Integer> frontierSquares = new HashSet<Integer>(2 * (gridRow + gridColumn));
         // set of squares which can provide information to probe other squares
         frontierSquares.add(clickedSquareIndex);
 
-        while (!(mineNumber == totalFlagCouunt 
+        while (!(mineNumber == totalFlagCount 
                 || gridColumn * gridRow - totalProbedSqauresCount == mineNumber)) {
             mapUpdated = false;
             Integer[] keyList = frontierSquares.toArray(new Integer[0]);
@@ -156,7 +154,7 @@ public class SPwCSPSolver {
                             neighbor.setEnabled(false);
                             if (mineCount != flagCount) {
                                 neighbor.setFlagged(true);
-                                totalFlagCouunt++;
+                                totalFlagCount++;
                             } else {
                                 int[] position = neighbor.getPosition();
                                 frontierSquares.add(position[0] * gridColumn + position[1]);
@@ -237,7 +235,7 @@ public class SPwCSPSolver {
                             } else {
                                 // if AMN
                                 square.setFlagged(true);
-                                totalFlagCouunt++;
+                                totalFlagCount++;
                             }
                         }
                     }
