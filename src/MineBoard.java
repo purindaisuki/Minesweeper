@@ -117,12 +117,12 @@ public class MineBoard {
      * @param clickedSquare first clicked square
      */
     public void generateSolvableMap(SquareButton clickedSquare) {
-        int randRow, randCol;
-        int placedMineNum = 0;
         int[] position = clickedSquare.getPosition();
         SPwCSPSolver solver = SPwCSPSolver.getSolver();
-        while (true) {
-            placedMineNum = 0;
+        boolean isSolvable = false;
+        while (!isSolvable) {
+            int placedMineNum = 0;
+            int randRow, randCol;
             // initialize the map except for first clicked button
             initialize();
             probedSquareNumber = 1;
@@ -133,7 +133,7 @@ public class MineBoard {
                 randRow = (int) (Math.random() * gridRow);
                 randCol = (int) (Math.random() * gridColumn);
                 if (!(randRow >= position[0] - 1 && randRow <= position[0] + 1
-                      && randCol >= position[1] - 1 && randCol <= position[1] + 1)
+                    && randCol >= position[1] - 1 && randCol <= position[1] + 1)
                     && !squares[randRow][randCol].isMine()) {
                     //make sure not to place mines around or at the clicked square which causes guessing
                     squares[randRow][randCol].setMine(true);
@@ -141,12 +141,9 @@ public class MineBoard {
                 }
             }
             // check whether is solvable without guessing
-            boolean isSolvable = solver.isSolvable(this, position[0] * gridColumn + position[1]);
-            if (isSolvable) {
-                break;
-            }
+            isSolvable = solver.isSolvable(this, position[0] * gridColumn + position[1]);
         }
-        // clear solver's operation amd set icons
+        // clear solver's operation
         for (int row = 0; row < gridRow; row++) {
             for (int col = 0; col < gridColumn; col++) {
                 if (!(row == position[0] && col == position[1])) {
